@@ -26,9 +26,9 @@ module.exports = {
         let usernameQuery = "SELECT * FROM `players` WHERE user_name = '" + username + "'";
 
         db.query(usernameQuery, (err, result) => {
-            if (err) {
-                return res.status(500).send(err);
-            }
+            // if (err) {
+            //     return res.status(500).send(err);
+            // }
             if (result.length > 0) {
                 message = 'Username already exists';
                 res.render('add-player.ejs', {
@@ -40,9 +40,9 @@ module.exports = {
                 if (uploadedFile.mimetype === 'image/png' || uploadedFile.mimetype === 'image/jpeg' || uploadedFile.mimetype === 'image/gif') {
                     // upload the file to the /public/assets/img directory
                     uploadedFile.mv(`public/assets/img/${image_name}`, (err ) => {
-                        if (err) {
-                            return res.status(500).send(err);
-                        }
+                        // if (err) {
+                        //     return res.status(500).send(err);
+                        // }
                         // send the player's details to the database
                         let query = "INSERT INTO `players` (first_name, last_name, position, number, image, user_name) VALUES ('" +
                             first_name + "', '" + last_name + "', '" + position + "', '" + number + "', '" + image_name + "', '" + username + "')";
@@ -67,9 +67,9 @@ module.exports = {
         let playerId = req.params.id;
         let query = "SELECT * FROM `players` WHERE id = '" + playerId + "' ";
         db.query(query, (err, result) => {
-            if (err) {
-                return res.status(500).send(err);
-            }
+            // if (err) {
+            //     return res.status(500).send(err);
+            // }
             res.render('edit-player.ejs', {
                 title: "Edit  Player"
                 ,player: result[0]
